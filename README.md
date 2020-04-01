@@ -1,4 +1,4 @@
-# ring-vscode README
+# ring-vscode
 
 Ring-VsCode is an extension for [ring!](https://github.com/AccountTechnologies/ring) - a service launcher and monitor designed to help teams during the transition from the legacy into the cloud.
 
