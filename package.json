@@ -1,185 +1,192 @@
 {
-	"name": "ring-vscode",
-	"displayName": "ring!",
-	"description": "",
-	"version": "0.1.2",
-	"icon": "media/ring.128.png",
-	"publisher": "account-technologies",
-	"author": {
-		"name": "Krzysztof Kraszewski"
-	},
-	"repository": {
-		"url": "https://github.com/AccountTechnologies/ring"
-	},
-	"engines": {
-		"vscode": "^1.33.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"onCommand:ring.sync"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"debuggers": [
-			{
-				"type": "ring",
-				"label": "Ring"
-			}
-		],
-		"commands": [
-			{
-				"command": "ring.loadStartWorkspace",
-				"title": "Ring: Workspace - Load and Start"
-			},
-			{
-				"command": "ring.stopWorkspace",
-				"title": "Ring: Workspace - Stop"
-			},
-			{
-				"command": "ring.unloadWorkspace",
-				"title": "Ring: Workspace - Unload"
-			},
-			{
-				"command": "ring.sync",
-				"title": "Ring: Sync"
-			},
-			{
-				"command": "ring.startRunnable",
-				"title": "Ring: Runnable - Start"
-			},
-			{
-				"command": "ring.stopRunnable",
-				"title": "Ring: Runnable - Stop"
-			},
-			{
-				"command": "ring.restartRunnable",
-				"title": "Ring: Runnable - Restart"
-			},
-			{
-				"command": "ring.revealContainingWorkspace",
-				"title": "Ring: Runnable - Open containing workspace"
-			},
-			{
-				"command": "ring.revealInExplorer",
-				"title": "Ring: Runnable - Reveal in explorer"
-			},
-			{
-				"command": "ring.browseRunnable",
-				"title": "Ring: Runnable - Browse"
-			},
-			{
-				"command": "ring.openFolder",
-				"title": "Ring: Runnable - Open folder in VS Code"
-			},
-			{
-				"command": "ring.openTerminal",
-				"title": "Ring: Runnable - Open Terminal"
-			},
-			{
-				"command": "ring.pickRunnablePid",
-				"title": "Ring: Runnable - Pick PID"
-			},
-			{
-				"command": "ring.debugRunnable",
-				"title": "Ring: Runnable - Debug ",
-				"enablement": "view == runnables"
-			}
-		],
-		"keybindings": [
-			{
-				"command": "ring.sync",
-				"key": "CTRL+R CTRL+R"
-			}
-		],
-		"viewsContainers": {
-			"activitybar": [
-				{
-					"id": "ring-view",
-					"title": "Ring",
-					"icon": "media/ring.24.svg"
-				}
-			]
-		},
-		"views": {
-			"ring-view": [
-				{
-					"id": "runnables",
-					"name": "Runnables"
-				}
-			]
-		},
-		"menus": {
-			"view/item/context": [
-				{
-					"when": "viewItem == ring.runnable",
-					"command": "ring.restartRunnable"
-				},
-				{
-					"when": "viewItem == ring.runnable",
-					"command": "ring.stopRunnable"
-				},
-				{
-					"when": "viewItem == ring.runnable",
-					"command": "ring.startRunnable"
-				},
-				{
-					"when": "viewItem == ring.runnable",
-					"command": "ring.revealContainingWorkspace"
-				},
-				{
-					"when": "viewItem == ring.runnable",
-					"command": "ring.revealInExplorer"
-				},
-				{
-					"when": "viewItem == ring.runnable",
-					"command": "ring.browseRunnable"
-				},
-				{
-					"when": "viewItem == ring.runnable",
-					"command": "ring.openFolder"
-				},
-				{
-					"when": "viewItem == ring.runnable",
-					"command": "ring.openTerminal"
-				},
-				{
-					"when": "viewItem == ring.runnable",
-					"command": "ring.debugRunnable"
-				}
-			]
-		},
-		"configuration": [
-			{
-				"title": "Ring! configuration",
-				"properties": {
-					"ring.serverUrl": {
-						"default": "ws://localhost:7999/ws",
-						"type": "string",
-						"description": "ring! server websocket url. Change it if you want to run ring! on a custom port"
-					}
-				}
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "npm run compile && node ./node_modules/vscode/bin/test"
-	},
-	"dependencies": {
-		"guid-typescript": "^1.0.9",
-		"ws": "^7.0.0"
-	},
-	"devDependencies": {
-		"@types/node": "^10.12.21",
-		"@types/utf8": "^2.1.6",
-		"@types/ws": "^6.0.1",
-		"tslint": "^5.12.1",
-		"typescript": "^3.3.1",
-		"vscode": "^1.1.28"
-	}
+  "name": "ring-vscode",
+  "displayName": "ring!",
+  "description": "",
+  "version": "0.1.3",
+  "icon": "media/ring.128.png",
+  "publisher": "account-technologies",
+  "author": {
+    "name": "queil"
+  },
+  "repository": {
+    "url": "https://github.com/AccountTechnologies/ring-vscode"
+  },
+  "engines": {
+    "vscode": "^1.33.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:ring.sync"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "debuggers": [
+      {
+        "type": "ring",
+        "label": "Ring"
+      }
+    ],
+    "commands": [
+      {
+        "command": "ring.loadStartWorkspace",
+        "title": "Ring: Workspace - Load and Start"
+      },
+      {
+        "command": "ring.stopWorkspace",
+        "title": "Ring: Workspace - Stop"
+      },
+      {
+        "command": "ring.unloadWorkspace",
+        "title": "Ring: Workspace - Unload"
+      },
+      {
+        "command": "ring.sync",
+        "title": "Ring: Sync"
+      },
+      {
+        "command": "ring.startRunnable",
+        "title": "Ring: Runnable - Start"
+      },
+      {
+        "command": "ring.stopRunnable",
+        "title": "Ring: Runnable - Stop"
+      },
+      {
+        "command": "ring.restartRunnable",
+        "title": "Ring: Runnable - Restart"
+      },
+      {
+        "command": "ring.revealContainingWorkspace",
+        "title": "Ring: Runnable - Open containing workspace"
+      },
+      {
+        "command": "ring.revealInExplorer",
+        "title": "Ring: Runnable - Reveal in explorer"
+      },
+      {
+        "command": "ring.browseRunnable",
+        "title": "Ring: Runnable - Browse"
+      },
+      {
+        "command": "ring.openFolder",
+        "title": "Ring: Runnable - Open folder in VS Code"
+      },
+      {
+        "command": "ring.openTerminal",
+        "title": "Ring: Runnable - Open Terminal"
+      },
+      {
+        "command": "ring.pickRunnablePid",
+        "title": "Ring: Runnable - Pick PID"
+      },
+      {
+        "command": "ring.debugRunnable",
+        "title": "Ring: Runnable - Debug ",
+        "enablement": "view == runnables"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "ring.sync",
+        "key": "CTRL+R CTRL+R"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "ring-view",
+          "title": "Ring",
+          "icon": "media/ring.24.svg"
+        }
+      ]
+    },
+    "views": {
+      "ring-view": [
+        {
+          "id": "runnables",
+          "name": "Runnables"
+        }
+      ]
+    },
+    "menus": {
+      "view/item/context": [
+        {
+          "when": "viewItem == ring.runnable",
+          "command": "ring.restartRunnable"
+        },
+        {
+          "when": "viewItem == ring.runnable",
+          "command": "ring.stopRunnable"
+        },
+        {
+          "when": "viewItem == ring.runnable",
+          "command": "ring.startRunnable"
+        },
+        {
+          "when": "viewItem == ring.runnable",
+          "command": "ring.revealContainingWorkspace"
+        },
+        {
+          "when": "viewItem == ring.runnable",
+          "command": "ring.revealInExplorer"
+        },
+        {
+          "when": "viewItem == ring.runnable",
+          "command": "ring.browseRunnable"
+        },
+        {
+          "when": "viewItem == ring.runnable",
+          "command": "ring.openFolder"
+        },
+        {
+          "when": "viewItem == ring.runnable",
+          "command": "ring.openTerminal"
+        },
+        {
+          "when": "viewItem == ring.runnable",
+          "command": "ring.debugRunnable"
+        }
+      ]
+    },
+    "configuration": [
+      {
+        "title": "Ring! configuration",
+        "properties": {
+          "ring.serverUrl": {
+            "default": "ws://localhost:7999/ws",
+            "type": "string",
+            "description": "ring! server websocket url. Change it if you want to run ring! on a custom port"
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "preinstall": "npx npm-force-resolutions",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "dependencies": {
+    "bufferutil": "^4.0.1",
+    "guid-typescript": "^1.0.9",
+    "utf-8-validate": "^5.0.2",
+    "ws": "^7.2.3"
+  },
+  "resolutions": {
+    "minimist": "^1.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "^10.17.18",
+    "@types/utf8": "^2.1.6",
+    "@types/ws": "^6.0.4",
+    "minimist": "^1.2.5",
+    "tslint": "^5.20.1",
+    "typescript": "^3.8.3",
+    "vscode": "^1.1.36"
+  }
 }
