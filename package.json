@@ -174,21 +174,22 @@
     "deploy": "vsce publish --yarn"
   },
   "dependencies": {
+    "@types/vscode": "^1.51.0",
     "bufferutil": "^4.0.1",
     "guid-typescript": "^1.0.9",
     "utf-8-validate": "^5.0.2",
+    "vscode-test": "^1.4.1",
     "ws": "^7.2.3"
   },
   "resolutions": {
     "minimist": "^1.2.5"
   },
   "devDependencies": {
-    "@types/node": "^10.17.18",
+    "@types/node": "^10.17.45",
     "@types/utf8": "^2.1.6",
     "@types/ws": "^6.0.4",
     "minimist": "^1.2.5",
     "tslint": "^5.20.1",
-    "typescript": "^3.8.3",
-    "vscode": "^1.1.36"
+    "typescript": "^3.9.7"
   }
 }
