@@ -170,7 +170,8 @@
     "watch": "tsc -watch -p ./",
     "preinstall": "npx npm-force-resolutions",
     "postinstall": "node ./node_modules/vscode/bin/install",
-    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+    "test": "npm run compile && node ./node_modules/vscode/bin/test",
+    "deploy": "vsce publish --yarn"
   },
   "dependencies": {
     "bufferutil": "^4.0.1",
