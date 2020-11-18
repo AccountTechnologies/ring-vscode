@@ -122,7 +122,7 @@ export class WorkspaceProvider implements vscode.TreeDataProvider<RingNode> {
     updateWorkspace(wsInfo:IWorkspaceInfo)
     {
         this.root = new WorkspaceNode(wsInfo, this.context);
-        this._onDidChangeTreeData.fire();       
+        this._onDidChangeTreeData.fire(null);       
     }
 
     resetWorkspace()
