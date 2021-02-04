@@ -114,39 +114,39 @@
     "menus": {
       "view/item/context": [
         {
-          "when": "viewItem == ring.runnable",
+          "when": "true",
           "command": "ring.restartRunnable"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "true",
           "command": "ring.stopRunnable"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "true",
           "command": "ring.startRunnable"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "true",
           "command": "ring.revealContainingWorkspace"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "viewItem =~ /.*,workDir,.*/",
           "command": "ring.revealInExplorer"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "viewItem =~ /.*,uri,.*/",
           "command": "ring.browseRunnable"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "viewItem =~ /.*,workDir,.*/",
           "command": "ring.openFolder"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "viewItem =~ /.*,workDir,.*/",
           "command": "ring.openTerminal"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "false",
           "command": "ring.debugRunnable"
         }
       ]
@@ -185,6 +185,7 @@
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
+    "ws": "^7.4.0",
     "@types/mocha": "^5.2.6",
     "@types/node": "^12.12.0",
     "@types/vscode": "^1.32.0",

@@ -4,6 +4,7 @@ import * as WebSocket from 'ws';
 import * as model  from './workspaceNodeProvider';
 import { Guid } from "guid-typescript";
 import { NetDebugConfigProvider } from './netDebugConfigProvider';
+import {detailsKeys} from './detailsKeys'
 
 let globalSocket: WebSocket;
 
@@ -90,9 +91,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
 			async function revealInExplorer(r:model.IRunnableInfo)
 			{
-				const workDirKey : string = "workDir";
-
-				const workDir = r.Details[workDirKey] as string;
+				const workDir = r.Details[detailsKeys.workDirKey] as string;
 			
 				if(workDir)
 				{
@@ -155,9 +154,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
 			async function browseTo(r:model.IRunnableInfo)
 			{
-				const uriKey : string = "uri";
-
-				const uri = r.Details[uriKey] as string;
+				const uri = r.Details[detailsKeys.uriKey] as string;
 			
 				if(uri) {await vscode.env.openExternal(vscode.Uri.parse(uri));}			
 			} 
