@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
+import {detailsKeys} from './detailsKeys'
 
 export interface IRunnableInfo
 {
@@ -8,7 +9,6 @@ export interface IRunnableInfo
 	DeclaredIn:string[];
 	State:RunnableState;
     Details: { [index:string]:any };
-    
 }
 
 export type ServerState = 'UNKNOWN' | 'IDLE' | 'LOADED' | 'RUNNING';
@@ -51,12 +51,13 @@ export class WorkspaceNode extends vscode.TreeItem {
 export class RunnableNode extends vscode.TreeItem {
 
     public id:string;
+
     constructor(public runnable:IRunnableInfo, protected context:vscode.ExtensionContext) { 
         super(runnable.Id);
         this.runnable = runnable;
         this.label = `${runnable.Id}`;
         this.tooltip = runnable.DeclaredIn.join("\r\n");
-        this.contextValue = "ring.runnable";
+        this.contextValue = "," + Object.keys(runnable.Details).reduce((m, x) => m + "," + x, '') + ",";
         this.iconPath = RunnableNode.getIconPath(context, runnable.State);
         this.id = runnable.Id;
      }      
