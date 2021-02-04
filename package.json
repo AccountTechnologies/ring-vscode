@@ -67,6 +67,11 @@
         "title": "Ring: Runnable - Reveal in explorer"
       },
       {
+        "command": "ring.revealInOctant",
+        "title": "Ring: Runnable - Reveal in Octant",
+        "enablement": "view == runnables"
+      },
+      {
         "command": "ring.browseRunnable",
         "title": "Ring: Runnable - Browse"
       },
@@ -132,6 +137,10 @@
         {
           "when": "viewItem =~ /.*,workDir,.*/",
           "command": "ring.revealInExplorer"
+        },
+        {
+          "when": "viewItem =~ /.*,kubernetesPods,.*/",
+          "command": "ring.revealInOctant"
         },
         {
           "when": "viewItem =~ /.*,uri,.*/",
