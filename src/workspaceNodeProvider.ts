@@ -55,8 +55,8 @@ export class RunnableNode extends vscode.TreeItem {
     constructor(public runnable:IRunnableInfo, protected context:vscode.ExtensionContext) { 
         super(runnable.Id);
         this.runnable = runnable;
-        this.label = `${runnable.Id}`;
-        this.tooltip = runnable.DeclaredIn.join("\r\n");
+        this.label = `${runnable.Details[detailsKeys.friendlyName] ?? runnable.Id}`;
+        this.tooltip = `${runnable.Id}`;
         this.contextValue = "," + Object.keys(runnable.Details).reduce((m, x) => m + "," + x, '') + ",";
         this.iconPath = RunnableNode.getIconPath(context, runnable.State);
         this.id = runnable.Id;
