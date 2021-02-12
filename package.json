@@ -2,7 +2,7 @@
   "name": "ring-vscode",
   "displayName": "ring!",
   "description": "",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "icon": "media/ring.128.png",
   "publisher": "account-technologies",
   "license": "Apache-2.0",
@@ -119,43 +119,43 @@
     "menus": {
       "view/item/context": [
         {
-          "when": "true",
+          "when": "view == runnables",
           "command": "ring.restartRunnable"
         },
         {
-          "when": "true",
+          "when": "view == runnables",
           "command": "ring.stopRunnable"
         },
         {
-          "when": "true",
+          "when": "view == runnables",
           "command": "ring.startRunnable"
         },
         {
-          "when": "true",
+          "when": "view == runnables",
           "command": "ring.revealContainingWorkspace"
         },
         {
-          "when": "viewItem =~ /.*,workDir,.*/",
+          "when": "view == runnables && viewItem =~ /.*,workDir,.*/",
           "command": "ring.revealInExplorer"
         },
         {
-          "when": "viewItem =~ /.*,kubernetesPods,.*/",
+          "when": "view == runnables && viewItem =~ /.*,kubernetesPods,.*/",
           "command": "ring.revealInOctant"
         },
         {
-          "when": "viewItem =~ /.*,uri,.*/",
+          "when": "view == runnables && viewItem =~ /.*,uri,.*/",
           "command": "ring.browseRunnable"
         },
         {
-          "when": "viewItem =~ /.*,workDir,.*/",
+          "when": "view == runnables && viewItem =~ /.*,workDir,.*/",
           "command": "ring.openFolder"
         },
         {
-          "when": "viewItem =~ /.*,workDir,.*/",
+          "when": "view == runnables && viewItem =~ /.*,workDir,.*/",
           "command": "ring.openTerminal"
         },
         {
-          "when": "false",
+          "when": "view == runnables && false",
           "command": "ring.debugRunnable"
         }
       ]
