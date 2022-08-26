@@ -2,7 +2,7 @@
   "name": "ring-vscode",
   "displayName": "ring!",
   "description": "",
-  "version": "0.2.0",
+  "version": "0.1.3",
   "icon": "media/ring.128.png",
   "publisher": "account-technologies",
   "license": "Apache-2.0",
