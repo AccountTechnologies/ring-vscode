@@ -39,8 +39,16 @@
         "title": "Ring: Workspace - Stop"
       },
       {
+        "command": "ring.startWorkspace",
+        "title": "Ring: Workspace - Start"
+      },
+      {
         "command": "ring.unloadWorkspace",
         "title": "Ring: Workspace - Unload"
+      },
+      {
+        "command": "ring.applyWorkspaceFlavour",
+        "title": "Ring: Workspace - Apply flavour"
       },
       {
         "command": "ring.sync",
@@ -178,7 +186,8 @@
     "@types/ws": "^7.4.0",
     "bufferutil": "^4.0.1",
     "guid-typescript": "^1.0.9",
-    "utf-8-validate": "^5.0.2"
+    "utf-8-validate": "^5.0.2",
+    "ws": "^8.8.1"
   },
   "resolutions": {
     "minimist": "^1.2.5"
@@ -188,13 +197,13 @@
     "@types/mocha": "^5.2.6",
     "@types/node": "^12.12.0",
     "@types/vscode": "^1.32.0",
+    "@typescript-eslint/eslint-plugin": "^3.0.2",
+    "@typescript-eslint/parser": "^3.0.2",
+    "@vscode/test-electron": "^2.1.5",
+    "eslint": "^7.1.0",
     "glob": "^7.1.4",
     "mocha": "^6.1.4",
     "source-map-support": "^0.5.12",
-    "@typescript-eslint/eslint-plugin": "^3.0.2",
-    "@typescript-eslint/parser": "^3.0.2",
-    "eslint": "^7.1.0",
-    "typescript": "^4.0.2",
-    "vscode-test": "^1.3.0"
+    "typescript": "^4.0.2"
   }
 }
