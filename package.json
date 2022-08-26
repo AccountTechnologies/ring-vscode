@@ -2,7 +2,7 @@
   "name": "ring-vscode",
   "displayName": "ring!",
   "description": "",
-  "version": "0.1.3",
+  "version": "0.1.6",
   "icon": "media/ring.128.png",
   "publisher": "account-technologies",
   "license": "Apache-2.0",
@@ -75,6 +75,11 @@
         "title": "Ring: Runnable - Reveal in explorer"
       },
       {
+        "command": "ring.revealInOctant",
+        "title": "Ring: Runnable - Reveal in Octant",
+        "enablement": "view == runnables"
+      },
+      {
         "command": "ring.browseRunnable",
         "title": "Ring: Runnable - Browse"
       },
@@ -122,39 +127,43 @@
     "menus": {
       "view/item/context": [
         {
-          "when": "viewItem == ring.runnable",
+          "when": "view == runnables",
           "command": "ring.restartRunnable"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "view == runnables",
           "command": "ring.stopRunnable"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "view == runnables",
           "command": "ring.startRunnable"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "view == runnables",
           "command": "ring.revealContainingWorkspace"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "view == runnables && viewItem =~ /.*,workDir,.*/",
           "command": "ring.revealInExplorer"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "view == runnables && viewItem =~ /.*,kubernetesPods,.*/",
+          "command": "ring.revealInOctant"
+        },
+        {
+          "when": "view == runnables && viewItem =~ /.*,uri,.*/",
           "command": "ring.browseRunnable"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "view == runnables && viewItem =~ /.*,workDir,.*/",
           "command": "ring.openFolder"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "view == runnables && viewItem =~ /.*,workDir,.*/",
           "command": "ring.openTerminal"
         },
         {
-          "when": "viewItem == ring.runnable",
+          "when": "view == runnables && false",
           "command": "ring.debugRunnable"
         }
       ]
