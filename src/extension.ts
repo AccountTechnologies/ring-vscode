@@ -40,23 +40,23 @@ export async function activate(context: vscode.ExtensionContext) {
 
         context.subscriptions.push(vscode.commands.registerCommand('ring.startRunnable', async (ctx:model.RunnableNode) => {
 
-            await contextOrFromPickList(r => sendMessage(M.RUNNABLE_INCLUDE, r.Id), ctx, r => r.State === 'ZERO');
+            await contextOrFromPickList(r => sendMessage(M.RUNNABLE_INCLUDE, r.id), ctx, r => r.state === 'ZERO');
         }));
 
         context.subscriptions.push(vscode.commands.registerCommand('ring.stopRunnable', async (ctx:model.RunnableNode) => {
 
-            await contextOrFromPickList(r => sendMessage(M.RUNNABLE_EXCLUDE, r.Id),ctx, r => r.State !== 'ZERO');
+            await contextOrFromPickList(r => sendMessage(M.RUNNABLE_EXCLUDE, r.id),ctx, r => r.state !== 'ZERO');
         }));
 
         context.subscriptions.push(vscode.commands.registerCommand('ring.restartRunnable', async (ctx:model.RunnableNode) => {
 
             async function restart(r:model.IRunnableInfo )
             {
-                sendMessage(M.RUNNABLE_EXCLUDE, r.Id);
-                sendMessage(M.RUNNABLE_INCLUDE, r.Id);
+                sendMessage(M.RUNNABLE_EXCLUDE, r.id);
+                sendMessage(M.RUNNABLE_INCLUDE, r.id);
             }
 
-            await contextOrFromPickList(restart, ctx, r => r.State === 'DEAD');
+            await contextOrFromPickList(restart, ctx, r => r.state === 'DEAD');
         }));
 
         context.subscriptions.push(vscode.commands.registerCommand('ring.showRingView', async () => {
@@ -68,12 +68,12 @@ export async function activate(context: vscode.ExtensionContext) {
             async function selectAndLoad(r:model.IRunnableInfo)
             {
                 let workspacePath:string = "";
-                if (r.DeclaredIn.length > 1)
+                if (r.declaredIn.length > 1)
                 {
-                    const path = await vscode.window.showQuickPick(r.DeclaredIn);
+                    const path = await vscode.window.showQuickPick(r.declaredIn);
                     if (path) {workspacePath = path; }
                 }
-                else {workspacePath = r.DeclaredIn[0];}
+                else {workspacePath = r.declaredIn[0];}
 
                 if (workspacePath)
                 {
@@ -92,7 +92,7 @@ export async function activate(context: vscode.ExtensionContext) {
             {
                 const workDirKey : string = "workDir";
 
-                const workDir = r.Details[workDirKey] as string;
+                const workDir = r.details[workDirKey] as string;
 
                 if(workDir)
                 {
@@ -110,7 +110,7 @@ export async function activate(context: vscode.ExtensionContext) {
             {
                 const workDirKey : string = "workDir";
 
-                const workDir = r.Details[workDirKey] as string;
+                const workDir = r.details[workDirKey] as string;
 
                 if(workDir)
                 {
@@ -128,7 +128,7 @@ export async function activate(context: vscode.ExtensionContext) {
             {
                 const workDirKey : string = "workDir";
 
-                const workDir = r.Details[workDirKey] as string;
+                const workDir = r.details[workDirKey] as string;
 
                 if(workDir)
                 {
@@ -157,7 +157,7 @@ export async function activate(context: vscode.ExtensionContext) {
             {
                 const uriKey : string = "uri";
 
-                const uri = r.Details[uriKey] as string;
+                const uri = r.details[uriKey] as string;
 
                 if(uri) {await vscode.env.openExternal(vscode.Uri.parse(uri));}
             }
@@ -178,7 +178,7 @@ export async function activate(context: vscode.ExtensionContext) {
                 return;
             }
 
-            const folder = folders.find(f=>f.name === ctx.runnable.Id);
+            const folder = folders.find(f=>f.name === ctx.runnable.id);
 
             if (!folder)
             {
@@ -187,7 +187,7 @@ export async function activate(context: vscode.ExtensionContext) {
             }
             const cfg = getConfiguration(ctx.runnable);
             if (cfg) {vscode.debug.startDebugging(folder, cfg);}
-            else {vscode.window.showInformationMessage(`Could not resolve debug configuration for runnable type '${ctx.runnable.Type}'`);}
+            else {vscode.window.showInformationMessage(`Could not resolve debug configuration for runnable type '${ctx.runnable.type}'`);}
         }));
 
         context.subscriptions.push(vscode.commands.registerCommand('ring.pickRunnablePid', async () => {
@@ -270,9 +270,9 @@ export async function activate(context: vscode.ExtensionContext) {
         {
             if (!ctx)
             {
-                let sorted = wsModel.current().Runnables.sort();
+                let sorted = wsModel.current().runnables.sort();
                 if (pickListFilter) {sorted = sorted.filter(pickListFilter);}
-                const id = await vscode.window.showQuickPick(sorted.map(k => k.Id));
+                const id = await vscode.window.showQuickPick(sorted.map(k => k.id));
                 if (!id) {return;}
                 const r = wsModel.getRunnable(id);
 
@@ -292,14 +292,14 @@ export async function activate(context: vscode.ExtensionContext) {
                 const r = wsModel.getRunnable(fs[0].name);
 
                 if (r) {
-                    pid = r.runnable.Details[pidKey];
+                    pid = r.runnable.details[pidKey];
                     return `${pid}`;
                 }
             }
 
             await contextOrFromPickList(r => {
 
-                pid = r.Details[pidKey] as number;
+                pid = r.details[pidKey] as number;
             });
 
             if (pid && pid > 0) {return `${pid}`;}
@@ -313,7 +313,7 @@ export async function activate(context: vscode.ExtensionContext) {
             if (!file) {return;}
 
             const workspacePath = file.fsPath;
-            const state = wsModel.current().ServerState;
+            const state = wsModel.current().serverState;
 
             if (state === 'RUNNING') { await sendMessage(M.STOP);}
             if (state === 'LOADED') {await sendMessage(M.UNLOAD);}
@@ -349,34 +349,35 @@ export async function activate(context: vscode.ExtensionContext) {
                         await loadWorkspace();
                     }
 
-                    wsModel.current().ServerState = 'IDLE';
+                    wsModel.current().serverState = 'IDLE';
                     break;
                 case M.SERVER_LOADED :
                     setStoppedStatus();
                     await sendMessage(M.WORKSPACE_INFO_RQ);
-                    wsModel.current().ServerState = 'LOADED';
+                    wsModel.current().serverState = 'LOADED';
                     vscode.window.showInformationMessage(`Workspace loaded: ${payload}`);
                     break;
                 case M.SERVER_RUNNING :
                     await sendMessage(M.WORKSPACE_INFO_RQ);
-                    wsModel.current().ServerState = 'RUNNING';
+                    wsModel.current().serverState = 'RUNNING';
                     vscode.window.showInformationMessage(`Workspace running: ${payload}`);
                     break;
 
                 case M.WORKSPACE_INFO_PUBLISH:
 
-                    wsModel.updateWorkspace(<model.IWorkspaceInfo>JSON.parse(payload));
+                    const model = <model.IWorkspaceInfo>JSON.parse(payload)
+                    wsModel.updateWorkspace(model);
 
                     const healthy = "#00dd00";
                     const degraded = "#ff8800";
                     const stopped = "#888888";
 
 
-                    wsStatus.color = wsModel.current().WorkspaceState === 'HEALTHY' ? healthy :
-                    wsModel.current().WorkspaceState === 'DEGRADED' ? degraded :
+                    wsStatus.color = wsModel.current().workspaceState === 'HEALTHY' ? healthy :
+                    wsModel.current().workspaceState === 'DEGRADED' ? degraded :
                                                      stopped;
 
-                    wsStatus.tooltip = wsModel.current().WorkspaceState.toString();
+                    wsStatus.tooltip = wsModel.current().workspaceState.toString();
 
                     break;
                 case M.RUNNABLE_UNRECOVERABLE:
@@ -485,7 +486,7 @@ export function deactivate() {
 
 export function getConfiguration(runnable:model.IRunnableInfo) : vscode.DebugConfiguration | undefined
 {
-    switch(runnable.Type.toLowerCase())
+    switch(runnable.type.toLowerCase())
     {
         case 'netexe' :
         case 'iisexpress': return {
