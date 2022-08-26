@@ -2,7 +2,7 @@
   "name": "ring-vscode",
   "displayName": "ring!",
   "description": "",
-  "version": "0.1.6",
+  "version": "0.2.0",
   "icon": "media/ring.128.png",
   "publisher": "account-technologies",
   "license": "Apache-2.0",
@@ -176,6 +176,11 @@
             "default": "ws://localhost:7999/ws",
             "type": "string",
             "description": "ring! server websocket url. Change it if you want to run ring! on a custom port"
+          },
+          "ring.octantUrl": {
+            "default": "http://127.0.0.1:7777",
+            "type": "string",
+            "description": "Octant Url"
           }
         }
       }
