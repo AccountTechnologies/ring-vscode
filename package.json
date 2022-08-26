@@ -39,8 +39,16 @@
         "title": "Ring: Workspace - Stop"
       },
       {
+        "command": "ring.startWorkspace",
+        "title": "Ring: Workspace - Start"
+      },
+      {
         "command": "ring.unloadWorkspace",
         "title": "Ring: Workspace - Unload"
+      },
+      {
+        "command": "ring.applyWorkspaceFlavour",
+        "title": "Ring: Workspace - Apply flavour"
       },
       {
         "command": "ring.sync",

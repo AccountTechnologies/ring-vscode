@@ -36,7 +36,16 @@ export async function activate(context: vscode.ExtensionContext) {
 
         }));
         context.subscriptions.push(vscode.commands.registerCommand('ring.stopWorkspace', async () => await sendMessage(M.STOP)));
+        context.subscriptions.push(vscode.commands.registerCommand('ring.startWorkspace', async () => await sendMessage(M.START)));
         context.subscriptions.push(vscode.commands.registerCommand('ring.unloadWorkspace', async () => await sendMessage(M.UNLOAD)));
+
+        context.subscriptions.push(vscode.commands.registerCommand('ring.applyWorkspaceFlavour', async () => {
+
+            const flavours = wsModel.current().flavours.filter(x => x !== wsModel.current().currentFlavour).sort();
+            const id = await vscode.window.showQuickPick(flavours);
+            if (!id || wsModel.current().currentFlavour === id ) { return; }
+            await sendMessage(M.WORKSPACE_APPLY_FLAVOUR, id)
+        }));
 
         context.subscriptions.push(vscode.commands.registerCommand('ring.startRunnable', async (ctx:model.RunnableNode) => {
 
@@ -540,6 +549,7 @@ enum M
         WORKSPACE_HEALTHY = 20,
         WORKSPACE_STOPPED = 21,
         WORKSPACE_INFO_PUBLISH = 26,
+        WORKSPACE_APPLY_FLAVOUR = 27,
         SERVER_IDLE = 22,
         SERVER_LOADED = 23,
         SERVER_RUNNING = 24

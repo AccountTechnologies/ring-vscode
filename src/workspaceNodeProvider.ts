@@ -19,6 +19,7 @@ export interface IWorkspaceInfo {
     path:string;
     runnables:IRunnableInfo[];
     flavours:string[];
+    currentFlavour: string;
     serverState: ServerState;
     workspaceState:  WorkspaceState;
 }
@@ -84,7 +85,7 @@ export class WorkspaceProvider implements vscode.TreeDataProvider<RingNode> {
     readonly onDidChangeTreeData: vscode.Event<RingNode | null> = this._onDidChangeTreeData.event;
     private root:WorkspaceNode;
 
-    public static emptyWorkspace:IWorkspaceInfo = {runnables:[], flavours: [], path:"Not loaded", serverState: 'UNKNOWN', workspaceState: 'UNKNOWN'}
+    public static emptyWorkspace:IWorkspaceInfo = {runnables:[], flavours: [], currentFlavour: "", path:"Not loaded", serverState: 'UNKNOWN', workspaceState: 'UNKNOWN'}
 
     constructor(private context: vscode.ExtensionContext)
     {
