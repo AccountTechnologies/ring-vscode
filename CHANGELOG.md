@@ -4,6 +4,15 @@ All notable changes to the "ring-vscode" extension will be documented in this fi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## 0.2.0
+### Changed
+- BREAKING: only supports Ring >= v4
+
+### Added
+- Support for Ring v4 workspace flavours
+- Add 'Reveal in Octant' option for Kustomize runnables (needs a running Octant)
+- Support for runnables `friendlyName`
+
 ## 0.1.3
 ### Changed
 - Added filtering of available actions in the runnable view context menu depending on available data
