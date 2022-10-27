@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 //import * as cp from 'child_process';
-import * as WebSocket from 'ws';
+import WebSocket from 'ws';
 import * as model from './workspaceNodeProvider';
 import { Guid } from "guid-typescript";
 import { NetDebugConfigProvider } from './netDebugConfigProvider';
