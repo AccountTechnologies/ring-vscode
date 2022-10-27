@@ -191,7 +191,6 @@
     "compile": "tsc -p ./",
     "lint": "eslint . --ext .ts,.tsx",
     "watch": "tsc -watch -p ./",
-    "preinstall": "npx npm-force-resolutions",
     "pretest": "npm run compile",
     "test": "node ./out/test/runTest.js",
     "deploy": "vsce publish --yarn",
@@ -202,6 +201,7 @@
     "bufferutil": "^4.0.1",
     "guid-typescript": "^1.0.9",
     "utf-8-validate": "^5.0.2",
+    "vscode-test": "^1.6.1",
     "ws": "^8.8.1"
   },
   "resolutions": {

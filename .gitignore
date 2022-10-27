@@ -2,3 +2,13 @@ out
 node_modules
 .vscode-test/
 *.vsix
+
+#yarn
+
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
