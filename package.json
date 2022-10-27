@@ -13,7 +13,7 @@
     "url": "https://github.com/AccountTechnologies/ring-vscode"
   },
   "engines": {
-    "vscode": "^1.33.0"
+    "vscode": "^1.63.0"
   },
   "categories": [
     "Other"
